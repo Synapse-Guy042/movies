@@ -55,7 +55,6 @@
   margin-bottom: 1rem;
 }
 
-
     /* Modal */
     .modal {
       display: none;
@@ -93,6 +92,22 @@
       border-radius: 8px;
       cursor: pointer;
     }
+
+    /* Pagination buttons */
+    .pagination button {
+      background: #7aa2ff;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -104,6 +119,7 @@
     <div class="modal-content">
       <h3 id="modalTitle"></h3>
       <div class="links" id="modalLinks"></div>
+      <div class="pagination" id="paginationButtons"></div>
       <button class="close" onclick="closeModal()">Close</button>
     </div>
   </div>
@@ -141,22 +157,12 @@
           { name: "Episode 23", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,23" },
           { name: "Episode 24", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,24" },
           { name: "Episode 25", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,25" },
-
         ]
       },
-      {
-        title: "F1 The Movie",
-        description: "A Formula One driver comes out of retirement to mentor and team up with a younger driver.",
-        image: "images/blackbutler.jpg",
-        links: [
-          { name: "F1 The Movie", url: "https://1movies.bz/watch/movie-f1-the-movie-nxkz7#ep=1" },
-          { name: "F1 The Movie (Back-Up)", url: "https://lordflix.club/media/tmdb-movie-911430-f1" },
-        ]
-      },
-      {
-        title: "Food Wars",
+{
+title: "Food Wars",
         description: "Young chef Soma enters the prestigious Totsuki Culinary Academy, where he must emerge victorious in over-the-top cooking battles or face expulsion.",
-image: "images/foodwars.jpg",
+        image: "images/foodwars.jpg",
         links: [
           { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1050974" },
           { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1054684" },
@@ -183,8 +189,91 @@ image: "images/foodwars.jpg",
           { name: "Episode 23", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095965" },
           { name: "Episode 24", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095966" },
         ]
-      }
+      },
+
+      {
+  title: "F1 The Movie",
+  description: "A Formula One driver comes out of retirement to mentor and team up with a younger driver.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "F1 The Movie", url: "https://1movies.bz/watch/movie-f1-the-movie-nxkz7#ep=1" },
+    { name: "F1 The Movie (Backup)", url: "https://lordflix.club/media/tmdb-movie-911430-f1"},
+  ]
+},
+
+      {
+        title: "The Big Bang Theory",
+        description: "Physicists Leonard and Sheldon find their nerd-centric social circle with pals Howard and Raj expanding when aspiring actress Penny moves in next door.",
+        image: "images/blackbutler.jpg",
+        links: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64766"},
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64777"},
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64765"},
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64762"},
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64763"},
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64764"},
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64767"},
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64769"},
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64770"},
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64650"},
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64768"},
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64774"},
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64775"},
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64773"},
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64771"},
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64772"},
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64776"},
+        ]
+      },
+{
+title: "Young Sheldon",
+  description: "The early life of child genius Sheldon Cooper, later seen in The Big Bang Theory.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1318082" },
+    { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1344588" },
+    { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1371006" },
+    { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1371007" },
+    { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1396761" },
+    { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1396819" },
+    { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1402820" },
+    { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1405567" },
+    { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1408219" },
+    { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1414930" },
+    { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1415337" },
+    { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1415338" },
+    { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1426865" },
+    { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1444888" },
+    { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1444890" },
+    { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1454904" },
+    { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1454905" },
+    { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1467649" },
+    { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1467650" },
+    { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472850" },
+    { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472851" },
+    { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472852"},
+    
+  ]
+},
+
+      
+{
+  title: "IT: Welcome To Derry",
+  description: "A Formula One driver comes out of retirement to mentor and team up with a younger driver.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/3693446" },
+    { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548351" },
+    { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548352" },
+    { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548353" },
+    { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548354" },
+    { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548355" },
+    { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548356" },
+    { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548357" },
+  ]
+},
     ];
+
 
     const grid = document.getElementById('cardGrid');
 
@@ -196,19 +285,53 @@ image: "images/foodwars.jpg",
       grid.appendChild(card);
     });
 
+    let currentPage = 1;
+    const itemsPerPage = 10;
+    let currentAnimeIndex = 0;
+
     function openModal(index) {
-      const anime = animeData[index];
-      document.getElementById('modalTitle').textContent = anime.title;
+      currentAnimeIndex = index;
+      currentPage = 1;
+      showPage();
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function showPage() {
+      const anime = animeData[currentAnimeIndex];
       const linksDiv = document.getElementById('modalLinks');
       linksDiv.innerHTML = '';
-      anime.links.forEach(item => {
+
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageItems = anime.links.slice(start, end);
+
+      pageItems.forEach(item => {
         const a = document.createElement('a');
         a.href = item.url;
         a.target = '_blank';
         a.textContent = item.name;
         linksDiv.appendChild(a);
       });
-      document.getElementById('modal').style.display = 'flex';
+
+      const paginationDiv = document.getElementById('paginationButtons');
+      paginationDiv.innerHTML = '';
+
+      if (anime.links.length > itemsPerPage) {
+        const backBtn = document.createElement('button');
+        backBtn.textContent = '⬅ Back';
+        backBtn.disabled = currentPage === 1;
+        backBtn.onclick = () => { currentPage--; showPage(); };
+
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Next ➡';
+        nextBtn.disabled = end >= anime.links.length;
+        nextBtn.onclick = () => { currentPage++; showPage(); };
+
+        paginationDiv.appendChild(backBtn);
+        paginationDiv.appendChild(nextBtn);
+      }
+
+      document.getElementById('modalTitle').textContent = anime.title;
     }
 
     function closeModal() {
