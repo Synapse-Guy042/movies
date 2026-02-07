@@ -13,9 +13,14 @@
       padding: 2rem;
     }
 
-    h1 {
+    h1, h2.category {
       text-align: center;
       margin-bottom: 2rem;
+    }
+
+    h2.category {
+      margin-top: 3rem;
+      opacity: 0.8;
     }
 
     .card-grid {
@@ -39,23 +44,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
-    .card h2 {
-      margin-top: 0;
-    }
-
-    .card p {
-      opacity: 0.8;
-    }
-
-   .card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-}
-
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -73,10 +61,6 @@
       width: 90%;
     }
 
-    .modal-content h3 {
-      margin-top: 0;
-    }
-
     .links a {
       display: block;
       color: #7aa2ff;
@@ -84,259 +68,529 @@
       margin-bottom: 0.5rem;
     }
 
-    .close {
-      margin-top: 1rem;
-      background: #7aa2ff;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    /* Pagination buttons */
     .pagination button {
       background: #7aa2ff;
       border: none;
       padding: 0.5rem 1rem;
-      margin: 0 0.2rem;
+      margin: 0.2rem;
       border-radius: 8px;
       cursor: pointer;
       color: #fff;
     }
-
-    .pagination button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
   </style>
 </head>
 <body>
-  <h1>Rayne And Archie – BEST Streaming Platty</h1>
 
-  <div class="card-grid" id="cardGrid"></div>
+<h1>Rayne And Archie – BEST Streaming Platty</h1>
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <h3 id="modalTitle"></h3>
-      <div class="links" id="modalLinks"></div>
-      <div class="pagination" id="paginationButtons"></div>
-      <button class="close" onclick="closeModal()">Close</button>
-    </div>
+<div id="content"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle"></h3>
+    <div class="pagination" id="seasonButtons"></div>
+    <div class="links" id="modalLinks"></div>
+    <button onclick="closeModal()">Close</button>
   </div>
+</div>
 
-  <script>
-    // This acts like your database
-    const animeData = [
+<script>
+const animeData = [
+
+
+  /* ===================== TV SHOWS ===================== */
+
+  {
+    category: "TV Shows",
+    title: "Breaking Bad",
+    description: "Walter White turns to crime after a cancer diagnosis.",
+    image: "images/blackbutler.jpg",
+    seasons: [
       {
-        title: "Blue Exorcist",
-        description: "Humans live in the world of Assiah, demons in Gehenna. The two dimensions are not meant to interfere with each other",
-        image: "images/blueexorcist.jpg",
-        links: [
-          { name: "Episode 1", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,1" },
-          { name: "Episode 2", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,2" },
-          { name: "Episode 3", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,3" },
-          { name: "Episode 4", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,4" },
-          { name: "Episode 5", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,5" },
-          { name: "Episode 6", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,6" },
-          { name: "Episode 7", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,7" },
-          { name: "Episode 8", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,8" },
-          { name: "Episode 9", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,9" },
-          { name: "Episode 10", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,10" },
-          { name: "Episode 11", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,11" },
-          { name: "Episode 12", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,12" },
-          { name: "Episode 13", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,13" },
-          { name: "Episode 14", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,14" },
-          { name: "Episode 15", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,15" },
-          { name: "Episode 16", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,16" },
-          { name: "Episode 17", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,17" },
-          { name: "Episode 18", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,18" },
-          { name: "Episode 19", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,19" },
-          { name: "Episode 20", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,20" },
-          { name: "Episode 21", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,21" },
-          { name: "Episode 22", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,22" },
-          { name: "Episode 23", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,23" },
-          { name: "Episode 24", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,24" },
-          { name: "Episode 25", url: "https://1movies.bz/watch/tv-blue-exorcist-rk77q#ep=1,25" },
+        season: 1,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62085" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62086" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62087" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62088" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62089" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62090" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62091" }
         ]
       },
-{
-title: "Food Wars",
-        description: "Young chef Soma enters the prestigious Totsuki Culinary Academy, where he must emerge victorious in over-the-top cooking battles or face expulsion.",
-        image: "images/foodwars.jpg",
-        links: [
-          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1050974" },
-          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1054684" },
-          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1054685" },
-          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1056414" },
-          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1058024" },
-          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1075629" },
-          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1075225" },
-          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1075226" },
-          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1070230" },
-          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1078410" },
-          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1077638" },
-          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1078411" },
-          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1080045" },
-          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095956" },
-          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095957" },
-          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095958" },
-          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095959" },
-          { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095960" },
-          { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095961" },
-          { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095962" },
-          { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095963" },
-          { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095964" },
-          { name: "Episode 23", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095965" },
-          { name: "Episode 24", url: "https://lordflix.club/media/tmdb-tv-62273-food-wars-shokugeki-no-soma/65672/1095966" },
+      {
+        season: 2,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62091" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/972874" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62094" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62095" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62096" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62097" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62098" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62099" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62100" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62101" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62102" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62103" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3573/62104" }
         ]
       },
+      { season: 3, episodes: [
+        { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62105" },
+        { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62106" },
+        { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62107" },
+        { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62108" },
+        { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62109" },
+        { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62110" },
+        { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62111" },
+        { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62112" },
+        { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62113" },
+        { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62114" },
+        { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3575/62116" },
+        { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62091" },
+        { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3572/62091" },
+      ] },
+      { season: 4, episodes: [
+        { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62118" },
+        { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62119" },
+        { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62120" },
+        { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62122" },
+        { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62123" },
+        { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62124" },
+        { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62121" },
+        { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62127" },
+        { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62125" },
+        { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62126" },
+        { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62129" },
+        { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62128" },
+        { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3576/62130" },
+      ] },
+      { season: 5, episodes: [
+        { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62147" },
+        { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62148" },
+        { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62149" },
+        { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62150" },
+        { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62151" },
+        { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62152" },
+        { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62153" },
+        { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62154" },
+        { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62155" },
+        { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62156" },
+        { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62159" },
+        { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62158" },
+        { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62157" },
+        { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62162" },
+        { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62160" },
+        { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-1396-breaking-bad/3578/62161" },
+      ] }
+    ]
+  },
 
-      {
+  {
+  category: "Movies",
   title: "F1 The Movie",
-  description: "A Formula One driver comes out of retirement to mentor and team up with a younger driver.",
+  description: "A Formula One driver returns.",
   image: "images/blackbutler.jpg",
   links: [
     { name: "F1 The Movie", url: "https://1movies.bz/watch/movie-f1-the-movie-nxkz7#ep=1" },
-    { name: "F1 The Movie (Backup)", url: "https://lordflix.club/media/tmdb-movie-911430-f1"},
+    { name: "Backup", url: "https://lordflix.club/media/tmdb-movie-911430-f1" }
+  ]
+},
+{
+  category: "Movies",
+  title: "A Bronx Tale",
+  description: "Set in the Bronx during the tumultuous 1960s, an adolescent boy is torn between his honest, working-class father and a violent yet charismatic crime boss.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "A Bronx Tale", url: "https://lordflix.club/media/tmdb-movie-1607-a-bronx-tale" },
+  ]
+},
+{
+  category: "Movies",
+  title: "The Green Mile",
+  description: "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the mysterious power to heal people's ailments.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "The Green Mile", url: "https://lordflix.club/media/tmdb-movie-497-the-green-mile" },
+  ]
+},
+{
+  category: "Movies",
+  title: "Superman",
+  description: "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "Superman", url: "https://lordflix.club/media/tmdb-movie-1061474-superman" },
+  ]
+},
+{
+  category: "Most Popular",
+  title: "The Wrecking Crew",
+  description: "Estranged half-brothers Jonny and James reunite after their father's mysterious death.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "The Wrecking Crew", url: "https://lordflix.club/media/tmdb-movie-1168190-the-wrecking-crew" },
+  ]
+},
+{
+  category: "Most Popular",
+  title: "The House Maid",
+  description: "Trying to escape her past, Millie Calloway accepts a job as a live-in housemaid",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "The Wrecking Crew", url: "https://lordflix.club/media/tmdb-movie-1368166-the-housemaid" },
+  ]
+},
+{
+  category: "Most Popular",
+  title: "Zootopia 2",
+  description: "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on a twisting trail.",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "Zootopia 2", url: "https://lordflix.club/media/tmdb-movie-1084242-zootopia-2" },
+  ]
+},
+{
+  category: "Most Popular",
+  title: "Anaconda",
+  description: "A group of friends facing mid-life crises head to the rainforest with the intention of remaking their favorite movie from their youth",
+  image: "images/blackbutler.jpg",
+  links: [
+    { name: "Anaconda", url: "https://lordflix.club/media/tmdb-movie-1234731-anaconda" },
   ]
 },
 
+  {
+    category: "TV Shows",
+    title: "The Big Bang Theory",
+    description: "Physicists Leonard and Sheldon find their nerd-centric social circle with pals Howard and Raj expanding when aspiring actress Penny moves in next door.",
+    image: "images/blackbutler.jpg",
+    seasons: [
       {
-        title: "The Big Bang Theory",
-        description: "Physicists Leonard and Sheldon find their nerd-centric social circle with pals Howard and Raj expanding when aspiring actress Penny moves in next door.",
-        image: "images/blackbutler.jpg",
-        links: [
-          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64766"},
-          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64777"},
-          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64765"},
-          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64762"},
-          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64763"},
-          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64764"},
-          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64767"},
-          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64769"},
-          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64770"},
-          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64650"},
-          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64768"},
-          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64774"},
-          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64775"},
-          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64773"},
-          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64771"},
-          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64772"},
-          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64776"},
+        season: 1,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64766" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64777" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64765" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64762" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64763" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64764" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64767" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64769" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64770" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64650" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64768" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64774" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64775" },
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64773" },
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64771" },
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64772" },
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3738/64776" }
         ]
       },
-{
-title: "Young Sheldon",
-  description: "The early life of child genius Sheldon Cooper, later seen in The Big Bang Theory.",
-  image: "images/blackbutler.jpg",
-  links: [
-    { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1318082" },
-    { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1344588" },
-    { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1371006" },
-    { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1371007" },
-    { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1396761" },
-    { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1396819" },
-    { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1402820" },
-    { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1405567" },
-    { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1408219" },
-    { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1414930" },
-    { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1415337" },
-    { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1415338" },
-    { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1426865" },
-    { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1444888" },
-    { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1444890" },
-    { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1454904" },
-    { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1454905" },
-    { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1467649" },
-    { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1467650" },
-    { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472850" },
-    { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472851" },
-    { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472852"},
-    
-  ]
-},
+      {
+        season: 2,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64651" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64652" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64653" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64654" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64655" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64656" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64657" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64658" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64659" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64660" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64661" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64662" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64663" },
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64664" },
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64665" },
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64666" },
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64667" },
+          { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64668" },
+          { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64669" },
+          { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64670" },
+          { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64671" },
+          { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64672" },
+          { name: "Episode 23", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64673" }
+        ] },
+        { season: 3, episodes: [] },
+      { season: 4, episodes: [] },
+      { season: 5, episodes: [] },
+      { season: 6, episodes: [] },
+      { season: 7, episodes: [] }
+    ]
+  },
 
-      
-{
-  title: "IT: Welcome To Derry",
-  description: "A Formula One driver comes out of retirement to mentor and team up with a younger driver.",
-  image: "images/blackbutler.jpg",
-  links: [
-    { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/3693446" },
-    { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548351" },
-    { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548352" },
-    { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548353" },
-    { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548354" },
-    { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548355" },
-    { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548356" },
-    { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-200875-it-welcome-to-derry/291792/6548357" },
-  ]
-},
-    ];
+  {
+    category: "TV Shows",
+    title: "Little People, Big World",
+    description: "Matt &amp; Amy Roloff enlist the help of their four children Jeremy, Zack, Molly &amp; Jacob to help expand the business of Roloff farms.",
+    image: "images/blackbutler.jpg",
+    seasons: [
+      {
+        season: 1,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/1311841" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296020" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296024" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296025" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296027" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296029" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296031" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296032" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296033" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296035" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296036" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296038" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296041" },
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296042" },
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296043" },
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296045" },
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296047" },
+          { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296050" },
+          { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296052" },
+          { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-330-little-people-big-world/77774/2296056" },
+        ]
+      },
+      {
+        season: 2,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64651" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64652" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64653" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64654" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64655" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64656" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64657" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64658" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64659" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64660" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64661" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64662" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64663" },
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64664" },
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64665" },
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64666" },
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64667" },
+          { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64668" },
+          { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64669" },
+          { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64670" },
+          { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64671" },
+          { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64672" },
+          { name: "Episode 23", url: "https://lordflix.club/media/tmdb-tv-1418-the-big-bang-theory/3733/64673" }
+        ] },
+        { season: 3, episodes: [] },
+      { season: 4, episodes: [] },
+      { season: 5, episodes: [] },
+      { season: 6, episodes: [] },
+      { season: 7, episodes: [] }
+    ]
+  },
+
+  {
+    category: "TV Shows",
+    title: "Young Sheldon",
+    description: "The early life of child genius Sheldon Cooper, later seen in The Big Bang Theory.",
+    image: "images/blackbutler.jpg",
+    seasons: [
+      {
+        season: 1,
+        episodes: [
+          { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1318082" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1344588" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1371006" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1371007" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1396761" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1396819" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1402820" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1405567" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1408219" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1414930" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1415337" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1415338" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1426865" },
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1444888" },
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1444890" },
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1454904" },
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1454905" },
+          { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1467649" },
+          { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1467650" },
+          { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472850" },
+          { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472851" },
+          { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/88399/1472852" }
+        ]
+      },
+      { season: 2, episodes: [
+        { name: "Episode 1", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1556974" },
+          { name: "Episode 2", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1578462" },
+          { name: "Episode 3", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1578463" },
+          { name: "Episode 4", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1578464" },
+          { name: "Episode 5", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1597586" },
+          { name: "Episode 6", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1604073" },
+          { name: "Episode 7", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1606652" },
+          { name: "Episode 8", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1614629" },
+          { name: "Episode 9", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1619668" },
+          { name: "Episode 10", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1626069" },
+          { name: "Episode 11", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1639154" },
+          { name: "Episode 12", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1648389" },
+          { name: "Episode 13", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1664988" },
+          { name: "Episode 14", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1664989" },
+          { name: "Episode 15", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1695927" },
+          { name: "Episode 16", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1701091" },
+          { name: "Episode 17", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1717592" },
+          { name: "Episode 18", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1749006" },
+          { name: "Episode 19", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1763351" },
+          { name: "Episode 20", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1763764" },
+          { name: "Episode 21", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1770892" },
+          { name: "Episode 22", url: "https://lordflix.club/media/tmdb-tv-71728-young-sheldon/108333/1770893" }
+
+      ] },
+      { season: 3, episodes: [] },
+      { season: 4, episodes: [] },
+      { season: 5, episodes: [] },
+      { season: 6, episodes: [] },
+      { season: 7, episodes: [] }
+    ]
+  }
+
+];
 
 
-    const grid = document.getElementById('cardGrid');
+const content = document.getElementById("content");
 
-    animeData.forEach((anime, index) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `<h2>${anime.title}</h2><p>${anime.description}</p>`;
-      card.onclick = () => openModal(index);
-      grid.appendChild(card);
+const categories = [...new Set(animeData.map(i => i.category))];
+
+categories.forEach(cat => {
+  const h2 = document.createElement("h2");
+  h2.className = "category";
+  h2.textContent = cat;
+  content.appendChild(h2);
+
+  const grid = document.createElement("div");
+  grid.className = "card-grid";
+
+  animeData.filter(i => i.category === cat).forEach(item => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
+    card.onclick = () => openModal(item);
+    grid.appendChild(card);
+  });
+
+  content.appendChild(grid);
+});
+
+function openModal(item) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalTitle").textContent = item.title;
+  document.getElementById("modalLinks").innerHTML = "";
+  document.getElementById("seasonButtons").innerHTML = "";
+
+  if (item.seasons) {
+    item.seasons.forEach((s, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = "Season " + s.season;
+      btn.onclick = () => renderEpisodes(s.episodes);
+      document.getElementById("seasonButtons").appendChild(btn);
     });
+  } else {
+    renderEpisodes(item.links);
+  }
+}
 
-    let currentPage = 1;
-    const itemsPerPage = 10;
-    let currentAnimeIndex = 0;
+let currentEpisodes = [];
+let currentPage = 1;
+const episodesPerPage = 10;
 
-    function openModal(index) {
-      currentAnimeIndex = index;
-      currentPage = 1;
-      showPage();
-      document.getElementById('modal').style.display = 'flex';
-    }
+function openModal(item) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalTitle").textContent = item.title;
+  document.getElementById("modalLinks").innerHTML = "";
+  document.getElementById("seasonButtons").innerHTML = "";
 
-    function showPage() {
-      const anime = animeData[currentAnimeIndex];
-      const linksDiv = document.getElementById('modalLinks');
-      linksDiv.innerHTML = '';
+  if (item.seasons) {
+    item.seasons.forEach((s, i) => {
+      const btn = document.createElement("button");
+      btn.textContent = "Season " + s.season;
+      btn.onclick = () => {
+        currentEpisodes = s.episodes;
+        currentPage = 1;
+        renderEpisodesPage();
+      };
+      document.getElementById("seasonButtons").appendChild(btn);
+    });
+  } else {
+    currentEpisodes = item.links;
+    currentPage = 1;
+    renderEpisodesPage();
+  }
+}
 
-      const start = (currentPage - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      const pageItems = anime.links.slice(start, end);
+function renderEpisodesPage() {
+  const div = document.getElementById("modalLinks");
+  div.innerHTML = "";
 
-      pageItems.forEach(item => {
-        const a = document.createElement('a');
-        a.href = item.url;
-        a.target = '_blank';
-        a.textContent = item.name;
-        linksDiv.appendChild(a);
-      });
+  const start = (currentPage - 1) * episodesPerPage;
+  const end = start + episodesPerPage;
+  const pageEpisodes = currentEpisodes.slice(start, end);
 
-      const paginationDiv = document.getElementById('paginationButtons');
-      paginationDiv.innerHTML = '';
+  pageEpisodes.forEach(e => {
+    const a = document.createElement("a");
+    a.href = e.url;
+    a.target = "_blank";
+    a.textContent = e.name;
+    div.appendChild(a);
+  });
 
-      if (anime.links.length > itemsPerPage) {
-        const backBtn = document.createElement('button');
-        backBtn.textContent = '⬅ Back';
-        backBtn.disabled = currentPage === 1;
-        backBtn.onclick = () => { currentPage--; showPage(); };
+  renderPaginationButtons();
+}
 
-        const nextBtn = document.createElement('button');
-        nextBtn.textContent = 'Next ➡';
-        nextBtn.disabled = end >= anime.links.length;
-        nextBtn.onclick = () => { currentPage++; showPage(); };
+function renderPaginationButtons() {
+  let paginationDiv = document.getElementById("paginationButtons");
+  
+  if (!paginationDiv) {
+    paginationDiv = document.createElement("div");
+    paginationDiv.id = "paginationButtons";
+    paginationDiv.className = "pagination";
+    document.getElementById("modalLinks").appendChild(paginationDiv);
+  }
+  paginationDiv.innerHTML = "";
 
-        paginationDiv.appendChild(backBtn);
-        paginationDiv.appendChild(nextBtn);
-      }
+  if (currentPage > 1) {
+    const prev = document.createElement("button");
+    prev.textContent = "Previous";
+    prev.onclick = () => {
+      currentPage--;
+      renderEpisodesPage();
+    };
+    paginationDiv.appendChild(prev);
+  }
 
-      document.getElementById('modalTitle').textContent = anime.title;
-    }
+  if (currentPage * episodesPerPage < currentEpisodes.length) {
+    const next = document.createElement("button");
+    next.textContent = "Next";
+    next.onclick = () => {
+      currentPage++;
+      renderEpisodesPage();
+    };
+    paginationDiv.appendChild(next);
+  }
+}
 
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-  </script>
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  currentEpisodes = [];
+  currentPage = 1;
+  document.getElementById("modalLinks").innerHTML = "";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+} 
+</script>
+
 </body>
 </html>
